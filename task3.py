@@ -11,7 +11,7 @@ NGEN       = 50
 LOW        = 0
 UP         = NR_PLACES - 1
 IND_SIZE   = NR_TRANSITIONS * 2
-TOURN_SIZE = 3
+TOURN_SIZE = 2
 INDPB      = 0.1
 
 
