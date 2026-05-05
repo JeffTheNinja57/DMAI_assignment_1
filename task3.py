@@ -6,26 +6,20 @@ from deap import base, creator, tools, algorithms
 
 from support import fitness, NR_TRANSITIONS, NR_PLACES
 
-# ---------------------------------------------------------------------------
-# Fixed GA settings (Task 1 operators — unchanged)
-# We only vary cxpb and mutpb to find the best hyperparameters.
-# ---------------------------------------------------------------------------
 POP_SIZE   = 100
 NGEN       = 50
 LOW        = 0
-UP         = NR_PLACES - 1   # 8
-IND_SIZE   = NR_TRANSITIONS * 2  # 24 genes
+UP         = NR_PLACES - 1
+IND_SIZE   = NR_TRANSITIONS * 2
 TOURN_SIZE = 3
-INDPB      = 0.1  # per-gene mutation probability inside mutUniformInt
+INDPB      = 0.1
 
-# Grid to search over
+
 CX_PROBS  = [0.2, 0.4, 0.6, 0.8]
 MUT_PROBS = [0.2, 0.4, 0.6, 0.8]
 N_RUNS    = 10
 
-# ---------------------------------------------------------------------------
-# DEAP setup
-# ---------------------------------------------------------------------------
+
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
@@ -41,9 +35,6 @@ toolbox.register("mutate",   tools.mutUniformInt, low=LOW, up=UP, indpb=INDPB)
 toolbox.register("select",   tools.selTournament, tournsize=TOURN_SIZE)
 
 
-# ---------------------------------------------------------------------------
-# Single trial
-# ---------------------------------------------------------------------------
 def run_trial(cxpb, mutpb):
     """Run the GA once with the given crossover and mutation probabilities.
 
@@ -71,9 +62,6 @@ def run_trial(cxpb, mutpb):
     return best_fitness, logbook
 
 
-# ---------------------------------------------------------------------------
-# Experiment: sweep the 4x4 grid
-# ---------------------------------------------------------------------------
 def run_experiment():
     # results[key]  = list of N_RUNS best-fitness floats
     # logbooks[key] = list of N_RUNS logbooks (each: list of gen records)
@@ -103,9 +91,6 @@ def run_experiment():
     return results, logbooks
 
 
-# ---------------------------------------------------------------------------
-# Pretty-print a 4x4 ABF table (mutpb rows, cxpb cols)
-# ---------------------------------------------------------------------------
 def print_table(results):
     col_w = 10
 
@@ -142,9 +127,6 @@ def print_table(results):
     print(f"\nBest: cxpb={best_cx}  mutpb={best_mut}  ABF={best_abf:.4f}")
 
 
-# ---------------------------------------------------------------------------
-# Save results to JSON (for Person 3 plots and Task 5 reference)
-# ---------------------------------------------------------------------------
 def save_results(results, logbooks):
     # Build a serialisable summary
     summary = {
@@ -193,9 +175,6 @@ def save_results(results, logbooks):
     print("\nResults saved to task3_results.json")
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 if __name__ == "__main__":
     print(f"Task 3 – Hyperparameter tuning")
     print(f"Grid: cxpb={CX_PROBS}  x  mutpb={MUT_PROBS}")
