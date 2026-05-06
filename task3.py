@@ -176,6 +176,10 @@ def save_results(results, logbooks):
 
 
 if __name__ == "__main__":
+    import multiprocessing
+
+    pool = multiprocessing.Pool()
+    toolbox.register("map", pool.map)
     print(f"Task 3 – Hyperparameter tuning")
     print(f"Grid: cxpb={CX_PROBS}  x  mutpb={MUT_PROBS}")
     print(f"Runs per combo: {N_RUNS} | Generations: {NGEN} | Pop: {POP_SIZE}\n")
@@ -187,3 +191,6 @@ if __name__ == "__main__":
     print(f"\nDone in {elapsed/60:.1f} min\n")
     print_table(results)
     save_results(results, logbooks)
+
+    pool.close()
+    pool.join()
