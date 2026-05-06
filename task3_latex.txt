@@ -19,3 +19,48 @@ Task 3 was about finding the right crossover and mutation probabilities. The ope
 \end{table}
 
 The best result was \texttt{cxpb=0.8}, \texttt{mutpb=0.4} with ABF = 0.6803, though two high-performing runs (0.8827 and 0.8723) account for much of the gap over other combinations. At \texttt{mutpb=0.8}, ABF is the lowest across all crossover values: at that mutation rate, solutions are randomised faster than selection pressure can compensate. Outside that row, differences between combinations are small and no configuration clearly dominates. These values (\texttt{cxpb=0.8}, \texttt{mutpb=0.4}) are carried forward to Task~5.
+
+% =============================================================
+
+\subsection*{Comparison: default operators vs.\ Task~2 best operators}
+
+The two runs used the same probability grid but different selection pressure: Run~1 used the Task~1 defaults (\texttt{tournsize=3}), Run~2 used the Task~2 best operator (\texttt{tournsize=2}).
+
+\begin{table}[h]
+\centering
+\begin{minipage}[t]{0.48\textwidth}
+  \centering
+  \small
+  \textbf{Run 1} --- \texttt{tournsize=3} (Task~1 defaults)\\[4pt]
+  \begin{tabular}{c|cccc}
+  \hline
+  \texttt{mut}$\backslash$\texttt{cx} & \texttt{.2} & \texttt{.4} & \texttt{.6} & \texttt{.8} \\
+  \hline
+  \texttt{0.2} & 0.625 & 0.678 & 0.709 & 0.695 \\
+  \texttt{0.4} & 0.685 & 0.646 & 0.705 & 0.700 \\
+  \texttt{0.6} & 0.696 & 0.732 & \textbf{0.737*} & 0.708 \\
+  \texttt{0.8} & 0.659 & 0.657 & 0.663 & 0.665 \\
+  \hline
+  \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \centering
+  \small
+  \textbf{Run 2} --- \texttt{tournsize=2} (Task~2 best)\\[4pt]
+  \begin{tabular}{c|cccc}
+  \hline
+  \texttt{mut}$\backslash$\texttt{cx} & \texttt{.2} & \texttt{.4} & \texttt{.6} & \texttt{.8} \\
+  \hline
+  \texttt{0.2} & 0.630 & 0.666 & 0.625 & 0.644 \\
+  \texttt{0.4} & 0.640 & 0.633 & 0.632 & \textbf{0.680*} \\
+  \texttt{0.6} & 0.632 & 0.620 & 0.601 & 0.639 \\
+  \texttt{0.8} & 0.582 & 0.580 & 0.591 & 0.606 \\
+  \hline
+  \end{tabular}
+\end{minipage}
+\caption{ABF for both runs. Best per run marked *.}
+\label{tab:task3_comparison}
+\end{table}
+
+Run~1 reached a best ABF of 0.7371 at \texttt{cxpb=0.6}, \texttt{mutpb=0.6}, with moderate probabilities consistently outperforming the extremes. Run~2 reached 0.6803 at \texttt{cxpb=0.8}, \texttt{mutpb=0.4}, though two outlier runs (0.8827, 0.8723) account for most of that combination's lead. The lower selection pressure of \texttt{tournsize=2} likely explains the overall drop in ABF: weaker selection allows lower-quality individuals to survive, slowing convergence. The one finding consistent across both runs is \texttt{mutpb=0.8}: it is the worst row in both tables, confirming that mutation at that rate randomises solutions faster than selection can act on them.
