@@ -1,0 +1,294 @@
+Task 3 – Hyperparameter tuning
+Grid: cxpb=[0.2, 0.4, 0.6, 0.8]  x  mutpb=[0.2, 0.4, 0.6, 0.8]
+Runs per combo: 10 | Generations: 50 | Pop: 100
+
+  cxpb=0.2  mutpb=0.2  run 1/10  best=0.5381  (1/160 total)
+  cxpb=0.2  mutpb=0.2  run 2/10  best=0.7096  (2/160 total)
+  cxpb=0.2  mutpb=0.2  run 3/10  best=0.7429  (3/160 total)
+  cxpb=0.2  mutpb=0.2  run 4/10  best=0.5601  (4/160 total)
+  cxpb=0.2  mutpb=0.2  run 5/10  best=0.6531  (5/160 total)
+^CTraceback (most recent call last):
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/task3.py", line 184, in <module>
+    results, logbooks = run_experiment()
+                        ~~~~~~~~~~~~~~^^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/task3.py", line 81, in run_experiment
+    best, logbook = run_trial(cxpb, mutpb)
+                    ~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/task3.py", line 52, in run_trial
+    pop, logbook = algorithms.eaSimple(
+                   ~~~~~~~~~~~~~~~~~~~^
+        pop, toolbox,
+        ^^^^^^^^^^^^^
+    ...<4 lines>...
+        verbose=False
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/deap/algorithms.py", line 173, in eaSimple
+    for ind, fit in zip(invalid_ind, fitnesses):
+                    ~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/support.py", line 69, in fitness
+    alignment_score = _get_alignment_scores(matrix)
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/support.py", line 100, in _get_alignment_scores
+    fa = conformance.fitness_alignments(
+        log=DATASET,
+    ...<2 lines>...
+        final_marking=final_marking,
+    )
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/conformance.py", line 524, in fitness_alignments
+    result = replay_fitness.apply(
+        log,
+    ...<5 lines>...
+        parameters=parameters,
+    )
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/evaluation/replay_fitness/algorithm.py", line 123, in apply
+    return exec_utils.get_variant(variant).apply(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        log,
+        ^^^^
+    ...<4 lines>...
+        parameters=parameters,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/evaluation/replay_fitness/variants/alignment_based.py", line 160, in apply
+    alignment_result = alignments.apply(
+        log,
+    ...<4 lines>...
+        parameters=parameters,
+    )
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/conformance/alignments/petri_net/algorithm.py", line 129, in apply
+    return apply_log(
+        obj,
+    ...<4 lines>...
+        variant=variant,
+    )
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/conformance/alignments/petri_net/algorithm.py", line 317, in apply_log
+    thm.submit(
+    ~~~~~~~~~~^
+        _compute,
+        ^^^^^^^^^
+    ...<3 lines>...
+        all_alignments,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/util/thread_utils.py", line 55, in submit
+    return func(*args, **kwargs)
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/conformance/alignments/petri_net/algorithm.py", line 300, in _compute
+    results[idx] = apply_trace(
+                   ~~~~~~~~~~~^
+        trace,
+        ^^^^^^
+    ...<4 lines>...
+        variant=variant,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/conformance/alignments/petri_net/algorithm.py", line 191, in apply_trace
+    ali = exec_utils.get_variant(variant).apply(
+        trace, petri_net, initial_marking, final_marking, parameters=parameters
+    )
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/conformance/alignments/petri_net/variants/state_equation_a_star.py", line 198, in apply
+    alignment = apply_trace_net(
+        petri_net,
+    ...<5 lines>...
+        parameters,
+    )
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/algo/conformance/alignments/petri_net/variants/state_equation_a_star.py", line 485, in apply_trace_net
+    construct_cost_aware(
+    ~~~~~~~~~~~~~~~~~~~~^
+        trace_net,
+        ^^^^^^^^^^
+    ...<8 lines>...
+        revised_sync,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/objects/petri_net/utils/synchronous_product.py", line 142, in construct_cost_aware
+    add_arc_from_to(p2_map[a.source], sync, sync_net)
+                    ~~~~~~^^^^^^^^^^
+  File "/Users/mihnea/_workspace_/_uni/_master/DMAI_assignment_1/.venv/lib/python3.14/site-packages/pm4py/objects/petri_net/obj.py", line 126, in __hash__
+    def __hash__(self):
+
+KeyboardInterrupt
+
+(.venv) (base) ➜  DMAI_assignment_1 git:(mihnea) ✗ python task3.py                                 git:(mihnea|…3
+Task 3 – Hyperparameter tuning
+Grid: cxpb=[0.2, 0.4, 0.6, 0.8]  x  mutpb=[0.2, 0.4, 0.6, 0.8]
+Runs per combo: 10 | Generations: 50 | Pop: 100
+
+  cxpb=0.2  mutpb=0.2  run 1/10  best=0.6393  (1/160 total)
+  cxpb=0.2  mutpb=0.2  run 2/10  best=0.5536  (2/160 total)
+  cxpb=0.2  mutpb=0.2  run 3/10  best=0.5381  (3/160 total)
+  cxpb=0.2  mutpb=0.2  run 4/10  best=0.6251  (4/160 total)
+  cxpb=0.2  mutpb=0.2  run 5/10  best=0.7166  (5/160 total)
+  cxpb=0.2  mutpb=0.2  run 6/10  best=0.6663  (6/160 total)
+  cxpb=0.2  mutpb=0.2  run 7/10  best=0.4989  (7/160 total)
+  cxpb=0.2  mutpb=0.2  run 8/10  best=0.6342  (8/160 total)
+  cxpb=0.2  mutpb=0.2  run 9/10  best=0.7949  (9/160 total)
+  cxpb=0.2  mutpb=0.2  run 10/10  best=0.6342  (10/160 total)
+  cxpb=0.2  mutpb=0.4  run 1/10  best=0.4656  (11/160 total)
+  cxpb=0.2  mutpb=0.4  run 2/10  best=0.6663  (12/160 total)
+  cxpb=0.2  mutpb=0.4  run 3/10  best=0.7032  (13/160 total)
+  cxpb=0.2  mutpb=0.4  run 4/10  best=0.6712  (14/160 total)
+  cxpb=0.2  mutpb=0.4  run 5/10  best=0.7053  (15/160 total)
+  cxpb=0.2  mutpb=0.4  run 6/10  best=0.6251  (16/160 total)
+  cxpb=0.2  mutpb=0.4  run 7/10  best=0.7148  (17/160 total)
+  cxpb=0.2  mutpb=0.4  run 8/10  best=0.5786  (18/160 total)
+  cxpb=0.2  mutpb=0.4  run 9/10  best=0.7100  (19/160 total)
+  cxpb=0.2  mutpb=0.4  run 10/10  best=0.5586  (20/160 total)
+  cxpb=0.2  mutpb=0.6  run 1/10  best=0.6663  (21/160 total)
+  cxpb=0.2  mutpb=0.6  run 2/10  best=0.6798  (22/160 total)
+  cxpb=0.2  mutpb=0.6  run 3/10  best=0.7032  (23/160 total)
+  cxpb=0.2  mutpb=0.6  run 4/10  best=0.5602  (24/160 total)
+  cxpb=0.2  mutpb=0.6  run 5/10  best=0.5203  (25/160 total)
+  cxpb=0.2  mutpb=0.6  run 6/10  best=0.5993  (26/160 total)
+  cxpb=0.2  mutpb=0.6  run 7/10  best=0.6677  (27/160 total)
+  cxpb=0.2  mutpb=0.6  run 8/10  best=0.6663  (28/160 total)
+  cxpb=0.2  mutpb=0.6  run 9/10  best=0.6594  (29/160 total)
+  cxpb=0.2  mutpb=0.6  run 10/10  best=0.5967  (30/160 total)
+  cxpb=0.2  mutpb=0.8  run 1/10  best=0.5397  (31/160 total)
+  cxpb=0.2  mutpb=0.8  run 2/10  best=0.5588  (32/160 total)
+  cxpb=0.2  mutpb=0.8  run 3/10  best=0.5402  (33/160 total)
+  cxpb=0.2  mutpb=0.8  run 4/10  best=0.5381  (34/160 total)
+  cxpb=0.2  mutpb=0.8  run 5/10  best=0.5916  (35/160 total)
+  cxpb=0.2  mutpb=0.8  run 6/10  best=0.6433  (36/160 total)
+  cxpb=0.2  mutpb=0.8  run 7/10  best=0.5228  (37/160 total)
+  cxpb=0.2  mutpb=0.8  run 8/10  best=0.6663  (38/160 total)
+  cxpb=0.2  mutpb=0.8  run 9/10  best=0.5639  (39/160 total)
+  cxpb=0.2  mutpb=0.8  run 10/10  best=0.6542  (40/160 total)
+  cxpb=0.4  mutpb=0.2  run 1/10  best=0.7091  (41/160 total)
+  cxpb=0.4  mutpb=0.2  run 2/10  best=0.6712  (42/160 total)
+  cxpb=0.4  mutpb=0.2  run 3/10  best=0.7148  (43/160 total)
+  cxpb=0.4  mutpb=0.2  run 4/10  best=0.6355  (44/160 total)
+  cxpb=0.4  mutpb=0.2  run 5/10  best=0.8421  (45/160 total)
+  cxpb=0.4  mutpb=0.2  run 6/10  best=0.5394  (46/160 total)
+  cxpb=0.4  mutpb=0.2  run 7/10  best=0.6723  (47/160 total)
+  cxpb=0.4  mutpb=0.2  run 8/10  best=0.5890  (48/160 total)
+  cxpb=0.4  mutpb=0.2  run 9/10  best=0.5580  (49/160 total)
+  cxpb=0.4  mutpb=0.2  run 10/10  best=0.7291  (50/160 total)
+  cxpb=0.4  mutpb=0.4  run 1/10  best=0.5638  (51/160 total)
+  cxpb=0.4  mutpb=0.4  run 2/10  best=0.6226  (52/160 total)
+  cxpb=0.4  mutpb=0.4  run 3/10  best=0.5536  (53/160 total)
+  cxpb=0.4  mutpb=0.4  run 4/10  best=0.5465  (54/160 total)
+  cxpb=0.4  mutpb=0.4  run 5/10  best=0.7750  (55/160 total)
+  cxpb=0.4  mutpb=0.4  run 6/10  best=0.6126  (56/160 total)
+  cxpb=0.4  mutpb=0.4  run 7/10  best=0.6727  (57/160 total)
+  cxpb=0.4  mutpb=0.4  run 8/10  best=0.5786  (58/160 total)
+  cxpb=0.4  mutpb=0.4  run 9/10  best=0.6663  (59/160 total)
+  cxpb=0.4  mutpb=0.4  run 10/10  best=0.7364  (60/160 total)
+  cxpb=0.4  mutpb=0.6  run 1/10  best=0.6480  (61/160 total)
+  cxpb=0.4  mutpb=0.6  run 2/10  best=0.6663  (62/160 total)
+  cxpb=0.4  mutpb=0.6  run 3/10  best=0.5151  (63/160 total)
+  cxpb=0.4  mutpb=0.6  run 4/10  best=0.5852  (64/160 total)
+  cxpb=0.4  mutpb=0.6  run 5/10  best=0.6663  (65/160 total)
+  cxpb=0.4  mutpb=0.6  run 6/10  best=0.6030  (66/160 total)
+  cxpb=0.4  mutpb=0.6  run 7/10  best=0.6663  (67/160 total)
+  cxpb=0.4  mutpb=0.6  run 8/10  best=0.6197  (68/160 total)
+  cxpb=0.4  mutpb=0.6  run 9/10  best=0.6786  (69/160 total)
+  cxpb=0.4  mutpb=0.6  run 10/10  best=0.5536  (70/160 total)
+  cxpb=0.4  mutpb=0.8  run 1/10  best=0.6663  (71/160 total)
+  cxpb=0.4  mutpb=0.8  run 2/10  best=0.5536  (72/160 total)
+  cxpb=0.4  mutpb=0.8  run 3/10  best=0.5381  (73/160 total)
+  cxpb=0.4  mutpb=0.8  run 4/10  best=0.6518  (74/160 total)
+  cxpb=0.4  mutpb=0.8  run 5/10  best=0.6393  (75/160 total)
+  cxpb=0.4  mutpb=0.8  run 6/10  best=0.5588  (76/160 total)
+  cxpb=0.4  mutpb=0.8  run 7/10  best=0.5004  (77/160 total)
+  cxpb=0.4  mutpb=0.8  run 8/10  best=0.5397  (78/160 total)
+  cxpb=0.4  mutpb=0.8  run 9/10  best=0.6393  (79/160 total)
+  cxpb=0.4  mutpb=0.8  run 10/10  best=0.5131  (80/160 total)
+  cxpb=0.6  mutpb=0.2  run 1/10  best=0.6712  (81/160 total)
+  cxpb=0.6  mutpb=0.2  run 2/10  best=0.6200  (82/160 total)
+  cxpb=0.6  mutpb=0.2  run 3/10  best=0.5786  (83/160 total)
+  cxpb=0.6  mutpb=0.2  run 4/10  best=0.7366  (84/160 total)
+  cxpb=0.6  mutpb=0.2  run 5/10  best=0.6404  (85/160 total)
+  cxpb=0.6  mutpb=0.2  run 6/10  best=0.5786  (86/160 total)
+  cxpb=0.6  mutpb=0.2  run 7/10  best=0.5800  (87/160 total)
+  cxpb=0.6  mutpb=0.2  run 8/10  best=0.4798  (88/160 total)
+  cxpb=0.6  mutpb=0.2  run 9/10  best=0.5381  (89/160 total)
+  cxpb=0.6  mutpb=0.2  run 10/10  best=0.8214  (90/160 total)
+  cxpb=0.6  mutpb=0.4  run 1/10  best=0.7133  (91/160 total)
+  cxpb=0.6  mutpb=0.4  run 2/10  best=0.5536  (92/160 total)
+  cxpb=0.6  mutpb=0.4  run 3/10  best=0.6775  (93/160 total)
+  cxpb=0.6  mutpb=0.4  run 4/10  best=0.6531  (94/160 total)
+  cxpb=0.6  mutpb=0.4  run 5/10  best=0.5608  (95/160 total)
+  cxpb=0.6  mutpb=0.4  run 6/10  best=0.6393  (96/160 total)
+  cxpb=0.6  mutpb=0.4  run 7/10  best=0.5786  (97/160 total)
+  cxpb=0.6  mutpb=0.4  run 8/10  best=0.5588  (98/160 total)
+  cxpb=0.6  mutpb=0.4  run 9/10  best=0.5794  (99/160 total)
+  cxpb=0.6  mutpb=0.4  run 10/10  best=0.8098  (100/160 total)
+  cxpb=0.6  mutpb=0.6  run 1/10  best=0.7032  (101/160 total)
+  cxpb=0.6  mutpb=0.6  run 2/10  best=0.5266  (102/160 total)
+  cxpb=0.6  mutpb=0.6  run 3/10  best=0.5528  (103/160 total)
+  cxpb=0.6  mutpb=0.6  run 4/10  best=0.6226  (104/160 total)
+  cxpb=0.6  mutpb=0.6  run 5/10  best=0.5588  (105/160 total)
+  cxpb=0.6  mutpb=0.6  run 6/10  best=0.6663  (106/160 total)
+  cxpb=0.6  mutpb=0.6  run 7/10  best=0.6663  (107/160 total)
+  cxpb=0.6  mutpb=0.6  run 8/10  best=0.5381  (108/160 total)
+  cxpb=0.6  mutpb=0.6  run 9/10  best=0.6393  (109/160 total)
+  cxpb=0.6  mutpb=0.6  run 10/10  best=0.5330  (110/160 total)
+  cxpb=0.6  mutpb=0.8  run 1/10  best=0.5381  (111/160 total)
+  cxpb=0.6  mutpb=0.8  run 2/10  best=0.5381  (112/160 total)
+  cxpb=0.6  mutpb=0.8  run 3/10  best=0.6663  (113/160 total)
+  cxpb=0.6  mutpb=0.8  run 4/10  best=0.6608  (114/160 total)
+  cxpb=0.6  mutpb=0.8  run 5/10  best=0.6393  (115/160 total)
+  cxpb=0.6  mutpb=0.8  run 6/10  best=0.5381  (116/160 total)
+  cxpb=0.6  mutpb=0.8  run 7/10  best=0.6393  (117/160 total)
+  cxpb=0.6  mutpb=0.8  run 8/10  best=0.6192  (118/160 total)
+  cxpb=0.6  mutpb=0.8  run 9/10  best=0.4800  (119/160 total)
+  cxpb=0.6  mutpb=0.8  run 10/10  best=0.5942  (120/160 total)
+  cxpb=0.8  mutpb=0.2  run 1/10  best=0.6342  (121/160 total)
+  cxpb=0.8  mutpb=0.2  run 2/10  best=0.6342  (122/160 total)
+  cxpb=0.8  mutpb=0.2  run 3/10  best=0.6663  (123/160 total)
+  cxpb=0.8  mutpb=0.2  run 4/10  best=0.5588  (124/160 total)
+  cxpb=0.8  mutpb=0.2  run 5/10  best=0.6663  (125/160 total)
+  cxpb=0.8  mutpb=0.2  run 6/10  best=0.6192  (126/160 total)
+  cxpb=0.8  mutpb=0.2  run 7/10  best=0.7460  (127/160 total)
+  cxpb=0.8  mutpb=0.2  run 8/10  best=0.7032  (128/160 total)
+  cxpb=0.8  mutpb=0.2  run 9/10  best=0.5786  (129/160 total)
+  cxpb=0.8  mutpb=0.2  run 10/10  best=0.6347  (130/160 total)
+  cxpb=0.8  mutpb=0.4  run 1/10  best=0.6786  (131/160 total)
+  cxpb=0.8  mutpb=0.4  run 2/10  best=0.6798  (132/160 total)
+  cxpb=0.8  mutpb=0.4  run 3/10  best=0.8827  (133/160 total)
+  cxpb=0.8  mutpb=0.4  run 4/10  best=0.6342  (134/160 total)
+  cxpb=0.8  mutpb=0.4  run 5/10  best=0.8723  (135/160 total)
+  cxpb=0.8  mutpb=0.4  run 6/10  best=0.6134  (136/160 total)
+  cxpb=0.8  mutpb=0.4  run 7/10  best=0.5786  (137/160 total)
+  cxpb=0.8  mutpb=0.4  run 8/10  best=0.6342  (138/160 total)
+  cxpb=0.8  mutpb=0.4  run 9/10  best=0.5338  (139/160 total)
+  cxpb=0.8  mutpb=0.4  run 10/10  best=0.6953  (140/160 total)
+  cxpb=0.8  mutpb=0.6  run 1/10  best=0.6953  (141/160 total)
+  cxpb=0.8  mutpb=0.6  run 2/10  best=0.6663  (142/160 total)
+  cxpb=0.8  mutpb=0.6  run 3/10  best=0.7040  (143/160 total)
+  cxpb=0.8  mutpb=0.6  run 4/10  best=0.6663  (144/160 total)
+  cxpb=0.8  mutpb=0.6  run 5/10  best=0.5580  (145/160 total)
+  cxpb=0.8  mutpb=0.6  run 6/10  best=0.5381  (146/160 total)
+  cxpb=0.8  mutpb=0.6  run 7/10  best=0.6663  (147/160 total)
+  cxpb=0.8  mutpb=0.6  run 8/10  best=0.6393  (148/160 total)
+  cxpb=0.8  mutpb=0.6  run 9/10  best=0.5928  (149/160 total)
+  cxpb=0.8  mutpb=0.6  run 10/10  best=0.6663  (150/160 total)
+  cxpb=0.8  mutpb=0.8  run 1/10  best=0.6542  (151/160 total)
+  cxpb=0.8  mutpb=0.8  run 2/10  best=0.5928  (152/160 total)
+  cxpb=0.8  mutpb=0.8  run 3/10  best=0.5852  (153/160 total)
+  cxpb=0.8  mutpb=0.8  run 4/10  best=0.6663  (154/160 total)
+  cxpb=0.8  mutpb=0.8  run 5/10  best=0.5479  (155/160 total)
+  cxpb=0.8  mutpb=0.8  run 6/10  best=0.5381  (156/160 total)
+  cxpb=0.8  mutpb=0.8  run 7/10  best=0.6663  (157/160 total)
+  cxpb=0.8  mutpb=0.8  run 8/10  best=0.5434  (158/160 total)
+  cxpb=0.8  mutpb=0.8  run 9/10  best=0.5990  (159/160 total)
+  cxpb=0.8  mutpb=0.8  run 10/10  best=0.6663  (160/160 total)
+
+Done in 27.4 min
+
+
+==================================================
+Mut \ CX         0.2       0.4       0.6       0.8
+==================================================
+0.2           0.6301    0.6660    0.6245    0.6442
+0.4           0.6399    0.6328    0.6324   0.6803*
+0.6           0.6319    0.6202    0.6007    0.6393
+0.8           0.5819    0.5800    0.5913    0.6059
+==================================================
+
+Best: cxpb=0.8  mutpb=0.4  ABF=0.6803
